@@ -1,0 +1,120 @@
+/* Container */
+.coming-soon-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505; /* Fallback color */
+  /* Add your background image here */
+  background-image: url('https://images.unsplash.com/photo-1637649228998-6c78a67dfa6c?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif; /* Use a premium font */
+}
+
+/* Dark Overlay to make text pop */
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+/* Canvas sits between overlay and text */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Content sits on top */
+.content-wrapper {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Typography */
+.brand-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  color: #888;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 2px;
+  transition: text-shadow 0.1s ease;
+  /* Initial Gold Gradient Text */
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+/* Sub Brands Strip */
+.sub-brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #D4AF37; /* Gold Color */
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.divider {
+  color: #444;
+}
+
+/* Button */
+.gold-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+.gold-btn:hover {
+  background: #D4AF37;
+  color: #000;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-title { font-size: 2.5rem; }
+  .sub-brands { font-size: 0.75rem; }
+}
