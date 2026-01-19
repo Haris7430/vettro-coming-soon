@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ComingSoonComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
