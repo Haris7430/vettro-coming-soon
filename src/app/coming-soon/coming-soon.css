@@ -84,13 +84,20 @@ canvas {
   gap: 10px;
   font-size: 0.9rem;
   color: #D4AF37; /* Gold Color */
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .divider {
   color: #444;
+}
+
+.cta-section p {
+  /* Added space between the text "Our showrooms..." and the Button */
+  margin-bottom: 10px; 
+  margin-top: 0;
+  color: #ddd; /* Making sure text is readable */
 }
 
 /* Button */
