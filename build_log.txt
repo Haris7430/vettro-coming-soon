@@ -1,0 +1,82 @@
+[33m❯[39m Building...
+[32m✔[39m Building...
+Application bundle generation failed. [5.814 seconds] - 2026-02-08T17:34:43.826Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Parser Error: Bindings cannot contain assignments at column 38 in [product.availableAt.slice(3).map(id => formatBranchName(id)).join(', ')] in D:\Clients\Vettro Traders\VettroTraders\frontend\src\app\components\gallery\gallery.component.html@146:37[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:147:37:
+[37m      147 │ ... [title]="[32mproduct.availableAt.slice(3).map(id => formatBranchN[37m...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Parser Error: Unexpected token ')' at column 60 in [product.availableAt.slice(3).map(id => formatBranchName(id)).join(', ')] in D:\Clients\Vettro Traders\VettroTraders\frontend\src\app\components\gallery\gallery.component.html@146:37[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:147:37:
+[37m      147 │ ... [title]="[32mproduct.availableAt.slice(3).map(id => formatBranchN[37m...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'undefined' is not assignable to parameter of type '(value: string, index: number, array: string[]) => unknown'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:147:70:
+[37m      147 │ ...availableAt.slice(3).map([32mid => formatBranchName(id[37m)).join(', ')">
+          ╵                             [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Parser Error: Bindings cannot contain assignments at column 39 in [ product.availableAt.slice(3).map(id => formatBranchName(id)).join(', ') ] in D:\Clients\Vettro Traders\VettroTraders\frontend\src\app\components\gallery\gallery.component.html@151:32[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:152:32:
+[37m      152 │ ...          [32m{{ product.availableAt.slice(3).map(id => formatBran[37m...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Parser Error: Unexpected token ')' at column 61 in [ product.availableAt.slice(3).map(id => formatBranchName(id)).join(', ') ] in D:\Clients\Vettro Traders\VettroTraders\frontend\src\app\components\gallery\gallery.component.html@151:32[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:152:32:
+[37m      152 │ ...          [32m{{ product.availableAt.slice(3).map(id => formatBran[37m...
+          ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'undefined' is not assignable to parameter of type '(value: string, index: number, array: string[]) => unknown'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/gallery/gallery.component.html:152:68:
+[37m      152 │ ...vailableAt.slice(3).map([32mid => formatBranchName(id[37m)).join(', ') }}
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component GalleryComponent.
+
+    src/app/components/gallery/gallery.component.ts:16:17:
+[37m      16 │     templateUrl: [32m'./gallery.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

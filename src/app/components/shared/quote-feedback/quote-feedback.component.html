@@ -1,0 +1,43 @@
+@if (state !== 'idle') {
+<div class="feedback-overlay">
+
+    <!-- Loading Animation -->
+    @if (state === 'loading') {
+    <div class="loading-container">
+        <div class="loading-track">
+            <div class="loading-fill">
+                <div class="loading-icon-wrapper">
+                    <span class="material-icons text-gradient-gold text-4xl">format_paint</span>
+                </div>
+            </div>
+        </div>
+        <p class="loading-text">Calculating best factory rates...</p>
+    </div>
+    }
+
+    <!-- Result Modal -->
+    @if (state === 'success') {
+    <div class="result-modal success-modal">
+        <div class="icon-circle success-bg">
+            <span class="material-icons success-text text-6xl">verified</span>
+            <div class="sun-rays"></div>
+        </div>
+        <h3 class="modal-title">Quote Requested!</h3>
+        <p class="modal-message">{{ message }}</p>
+        <button (click)="onClose()" class="action-btn success-btn">Awesome!</button>
+    </div>
+    }
+
+    @if (state === 'error') {
+    <div class="result-modal error-modal">
+        <div class="icon-circle error-bg">
+            <span class="material-icons error-text text-6xl">construction</span>
+        </div>
+        <h3 class="modal-title">Oops!</h3>
+        <p class="modal-message">{{ message }}</p>
+        <button (click)="onClose()" class="action-btn error-btn">Try Again</button>
+    </div>
+    }
+
+</div>
+}

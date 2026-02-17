@@ -1,0 +1,289 @@
+<div class="ecosystem-wrapper">
+  <!-- Section 1: Cinematic Hero -->
+  <section class="hero-section">
+    <div class="hero-background" [style.backgroundImage]="'url(' + heroImage + ')'"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title fade-in-up">{{ heroTitle }}</h1>
+      <p class="hero-subtitle fade-in-up-delayed">{{ heroSubtitle }}</p>
+    </div>
+  </section>
+
+  <!-- Section 2: The Narrative (Split Screen) -->
+  <section class="narrative-section">
+    <div class="narrative-container">
+      <!-- Left: Text Content -->
+      <div class="narrative-text">
+        <h2 class="narrative-heading">{{ philosophyTitle }}</h2>
+        <p class="narrative-body">{{ philosophyDescription }}</p>
+        <p class="narrative-body">
+          This integration allows us to control quality, reduce delays, and offer factory-direct pricing
+          across the entire value chain. Whether you're sourcing a single material or executing a full
+          turnkey project, you're working with one unified system.
+        </p>
+        <p class="narrative-body">
+          Today, the Vettro ecosystem includes five operating brands, each with specialized capabilities,
+          supported by a sixth — our upcoming safety glass manufacturing facility. Together, they serve
+          architects, contractors, and large-scale projects across Kerala.
+        </p>
+      </div>
+
+      <!-- Right: Floating Images Grid -->
+      <div class="narrative-visuals">
+        <div class="floating-image floating-1">
+          <img ngSrc="content/images/ecosystem/raw_wood_1770039371434.webp" alt="Raw Wood Materials" height="300"
+            width="200" priority />
+          <span class="image-label">Raw Materials</span>
+        </div>
+        <div class="floating-image floating-2">
+          <img ngSrc="content/images/ecosystem/polished_glass_1770039650319.webp" alt="Polished Glass" fill
+            class="object-cover" />
+          <span class="image-label">Processing</span>
+        </div>
+        <div class="floating-image floating-3">
+          <img ngSrc="content/images/ecosystem/finished_interior_1770039873604.webp" alt="Finished Interior" fill
+            class="object-cover" />
+          <span class="image-label">Finished Product</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider-container">
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Section 3: Interactive Brand Cards -->
+  <section class="brands-section">
+    <div class="brands-container">
+      <div class="brands-header">
+        <h2 class="brands-title">The Ecosystem in Detail</h2>
+        <p class="brands-subtitle">
+          Each brand in the Vettro Group plays a defined role inside one continuous interior supply and execution chain.
+        </p>
+      </div>
+
+      <div class="brands-grid">
+        <!-- Card 1: Vettro Traders -->
+        <article class="brand-card" #brandCard1>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_plywood_1770040088987.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <h3 class="card-title">Vettro Traders</h3>
+            <p class="card-category">Core Materials & Surfaces</p>
+            <div class="card-description">
+              <p>Plywood, Merino/Greenlam Mica, HDHMR, Multiwood. Your foundation for quality interior materials.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Real Glass & Paints -->
+        <article class="brand-card" #brandCard2>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_glass_1770040245755.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <h3 class="card-title">Real Glass & Paints</h3>
+            <p class="card-category">Glass Solutions</p>
+            <div class="card-description">
+              <p>Toughened Glass, Etching, Saint-Gobain/Modiguard surfaces. Light, reflection, and finish control.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Venice Metals -->
+        <article class="brand-card" #brandCard3>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_aluminium_1770040410331.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <h3 class="card-title">Venice Metals</h3>
+            <p class="card-category">Structural Systems</p>
+            <div class="card-description">
+              <p>Aluminium Profiles, Partition Systems, Hardware. Modern architectural frameworks and structural
+                integrity.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Venice Furnishings -->
+        <article class="brand-card" #brandCard4>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_upholstery_1770040548855.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <h3 class="card-title">Venice Furnishings</h3>
+            <p class="card-category">Soft Decor</p>
+            <div class="card-description">
+              <p>Upholstery (D-Decor, Sarom), Mattresses (Peps, Kurlon), Curtains. Comfort and elegance combined.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: V-Decor -->
+        <article class="brand-card" #brandCard5>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_construction_1770040732887.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <h3 class="card-title">V-Decor</h3>
+            <p class="card-category">Execution Wing</p>
+            <div class="card-description">
+              <p>End-to-end interior fit-outs, factory-to-site installation. Bringing your vision to life.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: Q-Tuff (Coming Soon) -->
+        <article class="brand-card brand-card-coming-soon" #brandCard6>
+          <div class="card-background"
+            style="background-image: url('content/images/ecosystem/brand_safety_glass_1770040867490.webp');"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-header-with-badge">
+              <h3 class="card-title">Q-Tuff</h3>
+              <span class="coming-soon-badge">New Factory Opening Soon</span>
+            </div>
+            <p class="card-category">Safety Glass Manufacturing</p>
+            <div class="card-description">
+              <p>Purpose-built for high-performance safety glass within the Vettro ecosystem.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider-container">
+    <div class="divider-line">
+
+    </div>
+
+
+  </div>
+
+  <!-- Section 4: Animated Timeline -->
+  <section class="timeline-section" #timelineSection>
+    <div class="timeline-container">
+      <div class="timeline-header">
+        <h2 class="timeline-title">A History of Integration</h2>
+        <p class="timeline-subtitle">
+          The Vettro ecosystem was not built overnight. It grew over decades, one specialized brand at a time.
+        </p>
+
+
+      </div>
+
+      <div class="timeline-content">
+        <!-- Vertical Center Line (Animated) -->
+        <div class="timeline-line" [class.timeline-line-active]="timelineActive()">
+
+        </div>
+
+        <div class="timeline-events">
+          <!-- 2002 -->
+          <div class="timeline-event" [class.timeline-event-active]="event2002Active()">
+            <div class="timeline-year-side">
+              <div class="timeline-node">
+
+              </div>
+              <p class="timeline-year">2002</p>
+              <h3 class="timeline-label">The Foundation</h3>
+
+
+            </div>
+            <div class="timeline-details-side">
+              <p class="timeline-brand">Venice Furnishings & Venice Metals</p>
+              <p class="timeline-description">
+                Focused on decor materials and aluminium systems, building trust with architects and contractors at the
+                ground level.
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+          <!-- 2011 -->
+          <div class="timeline-event" [class.timeline-event-active]="event2011Active()">
+            <div class="timeline-year-side">
+              <div class="timeline-node">
+
+              </div>
+              <p class="timeline-year">2011</p>
+              <h3 class="timeline-label">The Expansion</h3>
+
+
+            </div>
+            <div class="timeline-details-side">
+              <p class="timeline-brand">Real Glass & Paints</p>
+              <p class="timeline-description">
+                Specialized in glass processing and surface finishes, adding light, reflection, and finish control to
+                the ecosystem.
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+          <!-- 2019 -->
+          <div class="timeline-event" [class.timeline-event-active]="event2019Active()">
+            <div class="timeline-year-side">
+              <div class="timeline-node">
+
+              </div>
+              <p class="timeline-year">2019</p>
+              <h3 class="timeline-label">The Integration</h3>
+
+
+            </div>
+            <div class="timeline-details-side">
+              <p class="timeline-brand">Vettro Traders & V-Decor</p>
+              <p class="timeline-description">
+                Launched plywood sourcing and turnkey execution — bringing materials, manufacturing, and installation
+                into one integrated operating system.
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <!-- Next Step Section -->
+  <app-next-step title='"The Ecosystem is Ready."' subtitle='"See how we bring it all together for your project."'
+    buttonLink="/gallery" label="Next Step"></app-next-step>
+
+
+  <!-- Experience Centers -->
+  <app-experience-centers [branches]="branches()"></app-experience-centers>
+
+
+  <!-- WhatsApp Button -->
+  <app-whatsapp-button></app-whatsapp-button>
+
+  <!-- Section: Partner Slider -->
+  <app-partner-slider></app-partner-slider>
+
+  <!-- Footer -->
+  <app-footer [description]="footerDescription"></app-footer>
+
+
+</div>

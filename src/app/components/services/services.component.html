@@ -1,0 +1,406 @@
+<div class="bg-interior-icons min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] w-full overflow-hidden flex items-center justify-center">
+        <!-- Video Background -->
+        <video #heroVideo (ended)="onVideoEnded()" autoplay playsinline
+            class="absolute inset-0 w-full h-full object-cover">
+            <source src="content/videos/vettro-VedioShowcase-05.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Audio Toggle (Bottom Right) -->
+        <button (click)="toggleMute()"
+            class="absolute bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300 group">
+            <span class="material-icons text-2xl group-hover:scale-110 transition-transform">
+                {{ isMuted() ? 'volume_off' : 'volume_up' }}
+            </span>
+        </button>
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/60"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-serif text-white font-bold leading-tight mb-6 tracking-wide">
+                Precision Engineering. <br class="hidden md:block" /> Artistic Execution.
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-200 font-light max-w-3xl mx-auto">
+                From raw material to finished luxury. <br class="md:hidden" /> Experience the Vettro Factory Advantage.
+            </p>
+        </div>
+    </section>
+
+    <!-- Process Visualizer -->
+    <section #processSection class="relative py-20 overflow-hidden" (mouseenter)="onSectionHover()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 font-serif">
+                Manufacturing Process
+            </h2>
+
+            <!-- Desktop / Tablet: Horizontal Timeline -->
+            <div class="relative group/arrows hidden md:block">
+
+                <!-- Left Navigation Arrow -->
+                <button (click)="scrollLeft()"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37] hover:text-white transition-all duration-300 opacity-0 group-hover/arrows:opacity-100 focus:opacity-100">
+                    <span class="material-icons text-3xl">chevron_left</span>
+                </button>
+
+                <!-- Scrollable Content -->
+                <div #scrollContainer
+                    class="overflow-x-auto pb-12 px-4 snap-x scrollbar-hide [&::-webkit-scrollbar]:hidden"
+                    style="scrollbar-width: none; -ms-overflow-style: none;">
+                    <div class="relative min-w-max mx-auto px-8 pt-4">
+
+                        <!-- Grey Track Line -->
+                        <div class="absolute top-[3.25rem] left-0 right-0 h-1 bg-gray-200 z-0 rounded-full"></div>
+
+                        <!-- Bronze Progress Line (Horizontal) -->
+                        <div class="absolute top-[3.25rem] left-0 h-1 bg-[#D4AF37] z-0 rounded-full transition-all duration-[12000ms] ease-linear"
+                            [style.width]="progressWidth() + '%'"></div>
+
+                        <!-- Steps Container -->
+                        <div class="flex flex-row justify-between items-start gap-16 relative z-10 pt-4">
+                            @for (step of processSteps; track step.title; let i = $index) {
+                            <div #stepCard
+                                class="relative flex flex-col items-center w-64 group transition-all duration-500 ease-out snap-center"
+                                [class.opacity-50]="activeStepIndex() < i" [class.grayscale]="activeStepIndex() < i"
+                                [class.scale-105]="activeStepIndex() >= i" [class.opacity-100]="activeStepIndex() >= i"
+                                [class.grayscale-0]="activeStepIndex() >= i">
+
+                                <!-- Pulse Ring (Active State) -->
+                                <div class="absolute top-0 w-20 h-20 rounded-full border-2 border-[#D4AF37] animate-ping opacity-0 z-0"
+                                    [class.opacity-75]="activeStepIndex() === i"></div>
+
+                                <!-- Icon -->
+                                <div class="w-16 h-16 rounded-full bg-white border-4 border-gray-100 flex items-center justify-center shadow-lg relative z-10 transition-all duration-500 transform bg-white"
+                                    [class.border-[#D4AF37]]="activeStepIndex() >= i"
+                                    [class.shadow-[#D4AF37]/50]="activeStepIndex() >= i">
+                                    <span class="material-icons text-gray-400 text-3xl transition-colors duration-500"
+                                        [class.text-[#D4AF37]]="activeStepIndex() >= i">{{ step.icon }}</span>
+                                </div>
+
+                                <!-- Card -->
+                                <div class="mt-8 z-10 w-full">
+                                    <div class="bg-white/80 backdrop-blur-3xl p-8 rounded-2xl border border-white/60 shadow-lg transition-all duration-500 h-60 flex flex-col justify-center items-center text-center relative overflow-hidden"
+                                        [class.border-[#D4AF37]/40]="activeStepIndex() >= i"
+                                        [class.shadow-2xl]="activeStepIndex() >= i"
+                                        [class.shadow-[#D4AF37]/20]="activeStepIndex() >= i">
+
+                                        <!-- Background Image (Active State) -->
+                                        @if (step.image) {
+                                        <div class="absolute inset-0 z-0 transition-opacity duration-700 "
+                                            [class.opacity-0]="activeStepIndex() < i"
+                                            [class.opacity-100]="activeStepIndex() >= i">
+                                            <img [src]="step.image" [alt]="step.title"
+                                                class="w-full h-full object-cover">
+                                            <!-- Gradient Overlay for better text readability -->
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20">
+                                            </div>
+                                        </div>
+                                        }
+
+                                        <!-- Decorative Gradient Blob -->
+                                        <div class="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-[#D4AF37]/20 to-transparent rounded-full blur-2xl transition-opacity duration-700 z-0"
+                                            [class.opacity-0]="activeStepIndex() < i"
+                                            [class.opacity-100]="activeStepIndex() >= i"></div>
+
+                                        <div class="relative z-10 w-full">
+                                            <h3 class="font-bold text-gray-900 mb-3 text-xl transition-colors font-serif"
+                                                [class.text-white]="activeStepIndex() >= i"
+                                                [class.drop-shadow-lg]="activeStepIndex() >= i">{{ step.title }}</h3>
+                                            <p class="text-sm text-gray-600 leading-relaxed transition-colors duration-300"
+                                                [class.text-white]="activeStepIndex() >= i"
+                                                [class.font-medium]="activeStepIndex() >= i"
+                                                [class.drop-shadow-md]="activeStepIndex() >= i">{{ step.description }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Navigation Arrow -->
+                <button (click)="scrollRight()"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37] hover:text-white transition-all duration-300 opacity-0 group-hover/arrows:opacity-100 focus:opacity-100">
+                    <span class="material-icons text-3xl">chevron_right</span>
+                </button>
+            </div>
+
+            <!-- Mobile: Vertical Timeline -->
+            <div class="relative md:hidden mt-4 px-2">
+                <!-- Grey Vertical Track Line -->
+                <div class="absolute left-8 top-4 bottom-4 w-1 bg-gray-200 z-0 rounded-full"></div>
+
+                <!-- Bronze Progress Line (Vertical, uses same progressWidth() value) -->
+                <div class="absolute left-8 top-4 w-1 bg-[#D4AF37] z-0 rounded-full origin-top transition-all duration-[12000ms] ease-linear"
+                    [style.height]="progressWidth() + '%'"></div>
+
+                <div class="space-y-10 relative z-10">
+                    @for (step of processSteps; track step.title; let i = $index) {
+                    <div class="relative pl-20">
+                        <!-- Pulse Ring (Active State) -->
+                        <div class="absolute left-8 top-2 -translate-x-1/2 w-10 h-10 rounded-full border-2 border-[#D4AF37] animate-ping opacity-0 z-0"
+                            [class.opacity-75]="activeStepIndex() === i"></div>
+
+                        <!-- Icon Node -->
+                        <div class="absolute left-8 top-2 -translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-gray-100 flex items-center justify-center shadow-lg z-10 transition-all duration-500"
+                            [class.border-[#D4AF37]]="activeStepIndex() >= i"
+                            [class.shadow-[#D4AF37]/50]="activeStepIndex() >= i">
+                            <span class="material-icons text-gray-400 text-xl transition-colors duration-500"
+                                [class.text-[#D4AF37]]="activeStepIndex() >= i">{{ step.icon }}</span>
+                        </div>
+
+                        <!-- Card -->
+                        <div class="mt-8">
+                            <div class="bg-white/80 backdrop-blur-3xl p-6 rounded-2xl border border-white/60 shadow-lg transition-all duration-500 flex flex-col justify-center text-left relative overflow-hidden h-32"
+                                [class.border-[#D4AF37]/40]="activeStepIndex() >= i"
+                                [class.shadow-2xl]="activeStepIndex() >= i"
+                                [class.shadow-[#D4AF37]/20]="activeStepIndex() >= i"
+                                [class.opacity-50]="activeStepIndex() < i" [class.grayscale]="activeStepIndex() < i"
+                                [class.opacity-100]="activeStepIndex() >= i"
+                                [class.grayscale-0]="activeStepIndex() >= i">
+
+                                <!-- Background Image (Active State) -->
+                                @if (step.image) {
+                                <div class="absolute inset-0 z-0 transition-opacity duration-700"
+                                    [class.opacity-0]="activeStepIndex() < i"
+                                    [class.opacity-100]="activeStepIndex() >= i">
+                                    <img [src]="step.image" [alt]="step.title" class="w-full h-full object-cover">
+                                    <!-- Gradient Overlay for better text readability -->
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20">
+                                    </div>
+                                </div>
+                                }
+
+                                <!-- Decorative Gradient Blob -->
+                                <div class="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-[#D4AF37]/20 to-transparent rounded-full blur-2xl transition-opacity duration-700"
+                                    [class.opacity-0]="activeStepIndex() < i"
+                                    [class.opacity-100]="activeStepIndex() >= i"></div>
+
+                                <div class="relative z-10">
+                                    <h3 class="font-bold text-gray-900 mb-2 text-lg transition-colors font-serif"
+                                        [class.text-white]="activeStepIndex() >= i"
+                                        [class.drop-shadow-lg]="activeStepIndex() >= i">{{ step.title }}</h3>
+                                    <p class="text-sm text-gray-600 leading-relaxed text-justify transition-colors duration-300"
+                                        [class.text-white]="activeStepIndex() >= i"
+                                        [class.font-medium]="activeStepIndex() >= i"
+                                        [class.drop-shadow-md]="activeStepIndex() >= i">{{ step.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manufacturing Philosophy (Narrative) -->
+    <section #philosophySection class="relative py-24 overflow-hidden"
+        style="background-image: url('content/images/engineering_philosophy_bg.png'); background-attachment: fixed; background-size: cover; background-position: center;">
+        <!-- Lighter Overlay to show more of the background -->
+        <div class="absolute inset-0 bg-black/20 z-0"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative flex items-center min-h-[500px]">
+
+            <!-- Blueprint Effects Layer (Background) -->
+            <!-- Left Border & Ruler -->
+            <div class="absolute left-0 top-0 bottom-0 flex gap-2 z-0 hidden md:flex">
+                <div class="w-1 h-full bg-[#D4AF37]"></div>
+                <!-- Ruler Effect -->
+                <div
+                    class="w-2 h-full opacity-20 bg-[repeating-linear-gradient(to_bottom,black,black_1px,transparent_1px,transparent_20px)]">
+                </div>
+            </div>
+
+            <!-- Right Border & Gear -->
+            <div class="absolute right-0 top-0 bottom-0 flex gap-2 justify-end z-0">
+                <div class="w-1 h-full bg-[#D4AF37]"></div>
+                <!-- Gear Icon -->
+                <span
+                    class="material-icons absolute -right-16 top-0 text-[12rem] text-gray-900 opacity-5 -rotate-12 select-none pointer-events-none">engineering</span>
+            </div>
+
+            <!-- Image Stack (Left Side - "Card Throwing" Animation) -->
+            <div
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:left-10 lg:left-20 z-0 md:z-20 w-64 h-80 pointer-events-none md:pointer-events-auto perspective-1000 opacity-10 md:opacity-100">
+
+                <!-- Card 1 -->
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=400"
+                    alt="Factory Floor"
+                    class="absolute top-0 left-0 w-48 h-64 object-cover rounded-xl shadow-2xl border-4 border-white sepia-[.2] transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform cursor-pointer hover:scale-110 hover:!rotate-0 hover:z-50 hover:sepia-0"
+                    [class.translate-x-[100vw]]="!philosophyVisible()" [class.rotate-45]="!philosophyVisible()"
+                    [class.-rotate-12]="philosophyVisible()" style="transition-delay: 0ms;">
+
+                <!-- Card 2 -->
+                <img src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&q=80&w=400"
+                    alt="Wood Working"
+                    class="absolute top-4 left-8 w-48 h-64 object-cover rounded-xl shadow-2xl border-4 border-white sepia-[.2] transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform cursor-pointer hover:scale-110 hover:!rotate-0 hover:z-50 hover:sepia-0"
+                    [class.translate-x-[100vw]]="!philosophyVisible()" [class.rotate-45]="!philosophyVisible()"
+                    [class.rotate-6]="philosophyVisible()" style="transition-delay: 200ms;">
+
+                <!-- Card 3 -->
+                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=400"
+                    alt="Craftsmanship"
+                    class="absolute top-8 left-16 w-48 h-64 object-cover rounded-xl shadow-2xl border-4 border-white sepia-[.2] transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform cursor-pointer hover:scale-110 hover:!rotate-0 hover:z-50 hover:sepia-0"
+                    [class.translate-x-[100vw]]="!philosophyVisible()" [class.rotate-45]="!philosophyVisible()"
+                    [class.-rotate-3]="philosophyVisible()" style="transition-delay: 400ms;">
+            </div>
+
+
+            <!-- Content with Dark Panel Background -->
+            <div class="px-8 md:pl-80 md:pr-16 text-center md:text-left w-full relative z-10 transition-opacity duration-1000"
+                [class.opacity-0]="!philosophyVisible()" [class.opacity-100]="philosophyVisible()">
+                <!-- Semi-transparent dark panel for readability -->
+                <div class="bg-black/70 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-10 text-white font-serif">Where Imagination Meets
+                        Engineering.</h2>
+                    <p class="text-lg text-gray-100 leading-loose text-justify font-light">
+                        At Vettro Traders, we believe that true luxury lies in the details that the eye may miss, but
+                        the
+                        experience never forgets. For over two decades, we have evolved from a premier material supplier
+                        into a full-scale <strong class="text-[#D4AF37] font-bold">integrated manufacturing
+                            hub</strong>.
+                        Our facility is not just a factory; it is an ecosystem of precision where state-of-the-art
+                        <strong class="text-[#D4AF37] font-bold">CNC technology</strong>, advanced edge-banding systems,
+                        and
+                        automated glass processing units come together. We bridge the gap between an architect's vision
+                        and
+                        reality by eliminating manual errors and ensuring factory-finish consistency. Whether it is the
+                        intricate grooving on a multi-wood panel or the seamless joinery of a modular unit, every cut is
+                        calculated, every edge is sealed, and every product is crafted to stand the test of time. We
+                        don't
+                        just supply the wood; we <strong class="text-[#D4AF37] font-bold">engineer the
+                            solution</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Manufacturing Services -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 font-serif">Core Manufacturing
+                Services</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @for (service of coreServices; track service.title) {
+                <div
+                    class="group relative bg-white/60 backdrop-blur-xl border border-gray-100 rounded-2xl shadow-sm hover:shadow-2xl hover:border-[#D4AF37]/50 transition-all duration-500 overflow-hidden h-80">
+
+                    <!-- Image -->
+                    <div class="absolute inset-0 z-0 overflow-hidden">
+                        <img [ngSrc]="service.bgImage" [alt]="service.title" fill
+                            class="object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500">
+                        </div>
+                    </div>
+                    <div
+                        class="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/60 to-black/30 group-hover:from-[#D4AF37]/95 group-hover:via-black/70 transition-all duration-500">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="relative z-10 h-full flex flex-col justify-end p-8">
+                        <div
+                            class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#D4AF37] transition-all duration-300 border border-white/40">
+                            <span
+                                class="material-icons text-white text-2xl transition-transform duration-300 group-hover:rotate-12">{{
+                                service.icon }}</span>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-3 transition-all duration-300 group-hover:text-white font-serif">
+                            {{
+                            service.title }}</h3>
+                        <p
+                            class="text-gray-200 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
+                            {{ service.description }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready-to-Install Units -->
+    <section class="py-20 relative overflow-hidden"
+        style="background-image: url('content/images/ready_install_units_bg.png'); background-attachment: fixed; background-size: cover; background-position: center;">
+        <!-- Semi-transparent Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60 z-0"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <span
+                    class="inline-block px-4 py-2 bg-[#D4AF37] text-black text-sm font-semibold rounded-full mb-4 uppercase tracking-wider shadow-lg">Turnkey
+                    Solutions</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white font-serif drop-shadow-lg">Ready-to-Install Units
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @for (unit of readyToInstallUnits; track unit; let i = $index) {
+                <div
+                    class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex items-center hover:shadow-xl hover:border-[#D4AF37]/50 hover:-translate-y-2 transition-all duration-500 cursor-default relative overflow-hidden">
+
+                    <!-- Animated Background Gradient -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                    </div>
+
+                    <!-- Icon with unique colors per item -->
+                    <div class="relative z-10 w-14 h-14 rounded-full flex items-center justify-center mr-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
+                        [ngClass]="{
+                           'bg-blue-50 text-blue-500 group-hover:bg-blue-500 group-hover:text-white': i === 0,
+                           'bg-green-50 text-green-500 group-hover:bg-green-500 group-hover:text-white': i === 1,
+                           'bg-purple-50 text-purple-500 group-hover:bg-purple-500 group-hover:text-white': i === 2,
+                           'bg-orange-50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white': i === 3
+                         }">
+                        <span class="material-icons text-3xl transition-transform duration-300">
+                            {{ i === 0 ? 'kitchen' : i === 1 ? 'bed' : i === 2 ? 'tv' : 'auto_awesome' }}
+                        </span>
+                    </div>
+
+                    <div class="relative z-10 flex-1">
+                        <span
+                            class="font-semibold text-gray-800 group-hover:text-[#D4AF37] transition-colors duration-300 text-lg">{{
+                            unit }}</span>
+                        <div class="h-0.5 bg-gray-200 mt-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#D4AF37] w-0 group-hover:w-full transition-all duration-700"></div>
+                        </div>
+                    </div>
+
+                    <!-- Check Icon -->
+                    <span
+                        class="material-icons text-[#D4AF37] ml-3 opacity-50 group-hover:opacity-100 transition-opacity duration-300 relative z-10">check_circle</span>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Floating WhatsApp Button -->
+    <app-whatsapp-button></app-whatsapp-button>
+
+    <!-- Next Step Section -->
+    <app-next-step title='"Experience the Factory."' subtitle='Witness Precision in Motion."' buttonLink="/ecosystem"
+        label="Take The Next Step"></app-next-step>
+
+    <!-- Experience Centers -->
+    <app-experience-centers [branches]="branches()"></app-experience-centers>
+
+    <!-- Section: Partner Slider -->
+    <app-partner-slider></app-partner-slider>
+
+    <!-- Footer -->
+    <app-footer [description]="footerDescription"></app-footer>
+
+
+</div>

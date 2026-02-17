@@ -1,0 +1,45 @@
+<section class="relative w-full overflow-hidden py-12 bg-gray-50">
+    <!-- Layer 1: Bottom-Left to Top-Right -->
+    <div class="absolute inset-0 moving-grad-1 opacity-80"></div>
+
+    <!-- Layer 2: Bottom-Right to Top-Left -->
+    <div class="absolute inset-0 moving-grad-2 mix-blend-overlay"></div>
+
+    <!-- Overlay for readability -->
+    <div class="absolute inset-0 bg-white/10 backdrop-blur-[1px]"></div>
+
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mb-12">
+        <span class="block text-orange-600 tracking-[0.2em] font-medium uppercase text-sm mb-3">
+            Global Partnerships
+        </span>
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
+            Our Trusted <span class="italic font-serif text-orange-500">Brands</span>
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+            We collaborate with world-class manufacturers to bring you premium quality materials, ensuring excellence in
+            every detail of your interior projects.
+        </p>
+    </div>
+
+    <div class="relative flex overflow-x-hidden group z-10">
+        <!-- Marquee Container -->
+        <div class="flex animate-marquee-fast md:animate-marquee whitespace-nowrap py-4">
+            <!-- Loop 1 -->
+            @for (partner of partners(); track partner._id) {
+            <div class="partner-card">
+                <div class="relative h-16 w-40">
+                    <img [ngSrc]="partner.logoUrl" [alt]="partner.altText" fill class="object-contain">
+                </div>
+            </div>
+            }
+            <!-- Loop 2 -->
+            @for (partner of partners(); track partner._id) {
+            <div class="partner-card">
+                <div class="relative h-16 w-40">
+                    <img [ngSrc]="partner.logoUrl" [alt]="partner.altText" fill class="object-contain">
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

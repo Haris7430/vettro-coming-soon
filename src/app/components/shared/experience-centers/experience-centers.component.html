@@ -1,0 +1,62 @@
+<section class="w-full py-20 relative experience-centers-bg">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold tracking-tight">Visit Our <span class="text-[#4C1D95]">Experience
+                    Centers</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 justify-center">
+            @for (branch of _branches(); track branch._id) {
+            <!-- Clickable Card Wrapper -->
+            <a [href]="branch.mapUrl" target="_blank"
+                class="glass-card hover:shadow-2xl transition-all duration-500 p-0 pb-6 rounded-xl flex flex-col items-center text-center group cursor-pointer hover:scale-105 border border-gray-200 bg-white/40 backdrop-blur-sm shadow-lg hover:border-[#4C1D95]/30 overflow-hidden">
+
+                <!-- Branch Map Placeholder/Frame - VISIBLE TOP PORTION -->
+                <div class="w-full h-48 bg-gray-100 mb-6 overflow-hidden border-b border-gray-200 relative">
+                    <!-- iframe fully visible, no pointer events to allow card click -->
+                    @if(branch.iframeUrl) {
+                    <iframe width="100%" height="100%" [src]="branch.iframeUrl | safe" style="border:0;"
+                        allowfullscreen="" loading="lazy"
+                        class="opacity-90 group-hover:opacity-100 transition-opacity pointer-events-none duration-500"></iframe>
+                    } @else {
+                    <!-- Fallback -->
+                    <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
+                        <span class="material-icons text-4xl">map</span>
+                    </div>
+                    }
+                </div>
+
+                <div class="px-6 flex flex-col items-center w-full flex-grow">
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-[#4C1D95] transition-colors">{{ branch.name }}
+                    </h3>
+                    <!-- Location Visible ALWAYS -->
+                    <p
+                        class="text-xs text-gray-600 mb-6 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-100 group-hover:bg-[#4C1D95]/10 group-hover:text-[#4C1D95] transition-all leading-relaxed">
+                        {{ branch.location }}</p>
+
+                    <!-- Manager Profile -->
+                    <div
+                        class="mt-auto flex flex-col items-center w-full pt-6 border-t border-gray-100 group-hover:border-[#4C1D95]/20 transition-colors">
+                        <img [ngSrc]="branch.managerPhoto || 'https://placehold.co/100'" [alt]="branch.managerName"
+                            width="96" height="96"
+                            class="w-24 h-24 rounded-full border-4 border-white shadow-lg mb-4 object-cover transform group-hover:scale-110 transition-transform duration-300 ring-2 ring-transparent group-hover:ring-[#4C1D95] ring-offset-2">
+                        <span class="text-lg font-bold text-gray-800">{{ branch.managerName }}</span>
+                        <span class="text-xs text-[#4C1D95] uppercase tracking-wide font-medium mb-3">{{
+                            branch.managerRole
+                            }}</span>
+
+                        <div class="flex items-center space-x-3 mt-2">
+                            <div
+                                class="text-xs bg-gray-50 group-hover:bg-[#4C1D95] group-hover:text-white px-5 py-2 rounded-full transition-all border border-gray-200 shadow-sm font-mono">
+                                {{ branch.managerPhone }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+</section>

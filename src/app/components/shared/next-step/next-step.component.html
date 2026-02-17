@@ -1,0 +1,19 @@
+<section
+    class="w-full bg-white py-12 border-t border-gray-100 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+    <div
+        class="absolute inset-0 bg-gray-50 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-700 origin-bottom">
+    </div>
+    <div class="relative z-10 max-w-4xl px-4">
+        <span class="text-xs font-bold text-[#D4AF37] uppercase tracking-[0.3em] mb-6 block">{{ label }}</span>
+        <h2 class="text-3xl md:text-5xl font-bold text-black mb-8 leading-tight">
+            {{ title }} <br />
+            <span class="italic font-serif text-gray-500">{{ subtitle }}</span>
+        </h2>
+
+        <a [routerLink]="buttonLink"
+            class="magnetic-arrow-btn inline-flex items-center justify-center w-24 h-24 rounded-full border border-gray-200 hover:border-[#D4AF37] hover:bg-[#D4AF37] transition-all duration-500 group/btn mt-8">
+            <span
+                class="material-icons text-4xl text-gray-800 group-hover/btn:text-white transform group-hover/btn:translate-x-2 transition-transform duration-300">arrow_forward</span>
+        </a>
+    </div>
+</section>

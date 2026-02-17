@@ -1,59 +1,76 @@
-# VettroTradersComingSoon
+# Vettro Traders - The Integrated Interior Ecosystem
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+**Vettro Traders** is a premium interior solutions provider in Kerala, offering a complete ecosystem of manufacturing execution, material supply, and turnkey interior services. This repository contains the source code for the Vettro Traders web application, built with modern web technologies to deliver a high-end, cinematic user experience.
 
-## Development server
+## 🚀 Key Features
 
-To start a local development server, run:
+*   **Integrated Ecosystem**: Showcases 5 specialized sub-brands (Vettro Traders, Venice Furnishings, Venice Metals, Real Glass, V-Decor) under one unified platform.
+*   **Dynamic Visuals**: Features a cinematic "Vision" section, parallax scrolling, and high-quality video showcases.
+*   **Product Gallery**: A comprehensive, filterable gallery displaying hundreds of products across Plywood, Glass, Hardware, and Decor categories.
+*   **Location-Based SEO**: Automatic `LocalBusiness` Schema markup and dynamic meta tags for enhanced visibility in "near me" searches (Alappuzha, Chandiroor, etc.).
+*   **Smart Contact Form**: Integrated with Google App Scripts for seamless lead generation, featuring file uploads and auto-validation.
+*   **Performance Optimized**: Fully optimized assets (WebP images), lazy loading, and minimal bundle size for fast load times.
 
-```bash
-ng serve
+## 🛠️ Tech Stack
+
+*   **Framework**: [Angular 17+](https://angular.io/) (Standalone Components, Signals)
+*   **Styling**: Vanilla CSS (Variables, Glassmorphism, Animations)
+*   **State Management**: Angular Signals & RxJS
+*   **Analytics**: Vercel Analytics
+*   **Deployment**: Ready for Vercel / Netlify (Static/SPA)
+
+## 📂 Project Structure
+
+```
+src/
+├── app/
+│   ├── components/      # UI Components (Home, Gallery, Contact, etc.)
+│   ├── data/            # Static Data (site-data.ts - Single Source of Truth)
+│   ├── services/        # Business Logic (HomeService, SeoService)
+│   └── shared/          # Reusable Widgets (Footer, Navbar, WhatsApp Button)
+├── content/             # Public Assets (Images, Videos, Logos)
+└── index.html           # Entry Point (SEO Meta Tags, Fonts)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📦 Installation & Setup
 
-## Code scaffolding
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/vettro-traders.git
+    cd vettro-traders
+    ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-```bash
-ng generate component component-name
-```
+3.  **Run Development Server:**
+    ```bash
+    ng serve
+    ```
+    Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+4.  **Build for Production:**
+    ```bash
+    ng build
+    ```
+    The build artifacts will be stored in the `dist/` directory.
 
-```bash
-ng generate --help
-```
+## 🤝 Contributing
 
-## Building
+Contributions, issues, and feature requests are welcome!
 
-To build the project run:
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-```bash
-ng build
-```
+## 📄 License
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This project is proprietary software belonging to **Vettro Traders**. All rights reserved.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Contact**: [Vettro Traders](https://vettrotraders.com) | Alappuzha, Kerala

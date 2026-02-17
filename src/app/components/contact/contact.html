@@ -1,0 +1,264 @@
+﻿<div class="contact-page">
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+
+  <section class="hero-section">
+    <div class="container-split">
+      <div class="left-column">
+        <div class="glass-card contact-info-card">
+          <h1 class="heading-primary">Get a Custom Quote</h1>
+          <p class="subtext">Factory-direct pricing. Response within 24 hours.</p>
+
+          <div class="contact-person">
+            <div class="avatar-circle">
+              <span class="material-icons">person</span>
+            </div>
+            <div class="contact-details">
+              <h3 class="contact-name">Abdul Salim</h3>
+              <p class="contact-role">Branch Manager</p>
+              <a href="tel:+919447772931" class="phone-link">
+                <span class="material-icons">phone</span>
+                +91 944-777-2931
+              </a>
+            </div>
+          </div>
+
+          <div class="trust-badge">
+            <span class="material-icons">verified</span>
+            <span>Trusted by architects & contractors</span>
+          </div>
+
+          <div class="email-contact">
+            <span class="material-icons">email</span>
+            <a href="mailto:vettro2019@gmail.com">
+              vettro2019@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="form-container">
+          <h2 class="form-heading">Tell us your requirement</h2>
+
+          <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Your Details</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name <span class="required">*</span></label>
+                  <input type="text" id="fullName" formControlName="fullName" class="form-input"
+                    placeholder="Enter your full name">
+                  @if (quoteForm.get('fullName')?.invalid && quoteForm.get('fullName')?.touched) {
+                  <span class="error-message">Name must be at least 3 characters</span>
+                  }
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone (WhatsApp) <span class="required">*</span></label>
+                  <div class="input-with-icon">
+                    <span class="material-icons input-icon">call</span>
+                    <input type="tel" id="phone" formControlName="phone" class="form-input with-icon"
+                      placeholder="10-digit mobile number">
+                  </div>
+                  @if (quoteForm.get('phone')?.invalid && quoteForm.get('phone')?.touched) {
+                  <span class="error-message">Enter valid 10-digit mobile number</span>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email <span class="optional">(Optional)</span></label>
+                  <input type="email" id="email" formControlName="email" class="form-input"
+                    placeholder="your@email.com">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Location</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="location">City / Branch <span class="required">*</span></label>
+                  <select id="location" formControlName="location" class="form-select">
+                    <option value="">Select nearest branch</option>
+                    <option value="alappuzha">Alappuzha</option>
+                    <option value="ernakulam">Ernakulam</option>
+                    <option value="kottayam">Kottayam</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              @if (showOtherLocation()) {
+              <div class="form-row other-location-row">
+                <div class="form-group">
+                  <label for="otherLocation">Please specify your exact location <span class="required">*</span></label>
+                  <textarea id="otherLocation" formControlName="otherLocation" class="form-textarea" rows="3"
+                    placeholder="Enter your complete address with area/city and pincode"></textarea>
+                  @if (quoteForm.get('otherLocation')?.invalid && quoteForm.get('otherLocation')?.touched) {
+                  <span class="error-message">Please provide complete address (minimum 10 characters)</span>
+                  }
+                </div>
+              </div>
+              }
+            </div>
+
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Project Type <span class="required">*</span></h3>
+
+              <div class="pills-container">
+                @for (project of projectTypes; track project.id) {
+                <button type="button" class="pill-button" [class.active]="selectedProjects().includes(project.id)"
+                  (click)="toggleProject(project.id)">
+                  <span class="material-icons">{{ project.icon }}</span>
+                  {{ project.label }}
+                </button>
+                }
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Material Interest</h3>
+
+              <div class="checkbox-grid">
+                @for (material of materialTypes; track material.id) {
+                <label class="checkbox-label">
+                  <input type="checkbox" [checked]="selectedMaterials().includes(material.id)"
+                    (change)="toggleMaterial(material.id)" class="checkbox-input">
+                  <span class="checkbox-custom"></span>
+                  {{ material.label }}
+                </label>
+                }
+              </div>
+
+              @if (selectedMaterials().includes('other')) {
+              <div class="form-row mt-4 sliding-input">
+                <div class="form-group">
+                  <label for="otherMaterialDetails">Please specify details <span class="required">*</span></label>
+                  <textarea id="otherMaterialDetails" formControlName="otherMaterialDetails" class="form-textarea"
+                    rows="2" placeholder="Describe the other materials required..."></textarea>
+                </div>
+              </div>
+              }
+            </div>
+
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Project Scope</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="area">Approx Area (sq.ft) <span class="required">*</span></label>
+                  <input type="number" id="area" formControlName="area" class="form-input" placeholder="e.g., 500">
+                  @if (quoteForm.get('area')?.invalid && quoteForm.get('area')?.touched) {
+                  <span class="error-message">Area must be at least 30 sq.ft</span>
+                  }
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="budget">Budget Range</label>
+                  <div class="budget-display">{{ formatBudget(budgetValue()) }}</div>
+                  <input type="range" id="budget" formControlName="budget" min="100000" max="2000000" step="50000"
+                    (input)="onBudgetChange($event)" class="budget-slider">
+                  <div class="budget-labels">
+                    <span>₹1L</span>
+                    <span>₹20L+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="section-heading glass-heading">Upload Drawings/Images</h3>
+
+              <div class="file-upload-container">
+                @if (!uploadedFile()) {
+                <label for="fileUpload" class="file-upload-label">
+                  <span class="material-icons">cloud_upload</span>
+                  <span>Upload drawings or images (PDF, JPG)</span>
+                  <span class="file-size-hint">Max 5MB</span>
+                </label>
+                <input type="file" id="fileUpload" accept=".pdf,.jpg,.jpeg,.png" (change)="onFileSelected($event)"
+                  class="file-input">
+                } @else {
+                <div class="uploaded-file">
+                  <span class="material-icons">description</span>
+                  <span class="file-name">{{ uploadedFile()?.name }}</span>
+                  <button type="button" (click)="removeFile()" class="remove-file-btn">
+                    <span class="material-icons">close</span>
+                  </button>
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="form-group">
+                <label for="message">Additional Details <span class="optional">(Optional)</span></label>
+                <textarea id="message" formControlName="message" class="form-textarea" rows="4"
+                  placeholder="Any specific requirements or questions..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-button">
+              <span>Request Quote</span>
+              <span class="material-icons">arrow_forward</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Centers (Shared Component) -->
+  <div class="mt-20">
+    <app-experience-centers [branches]="branches()"></app-experience-centers>
+  </div>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Common Questions</h2>
+
+      <div class="faq-container">
+        @for (faq of faqs; track $index; let i = $index) {
+        <div class="faq-item" [class.active]="faq.isOpen">
+          <button type="button" class="faq-question" (click)="toggleFAQ(i)">
+            <span>{{ faq.question }}</span>
+            <span class="material-icons">{{ faq.isOpen ? 'remove' : 'add' }}</span>
+          </button>
+          @if (faq.isOpen) {
+          <div class="faq-answer">
+            <p>{{ faq.answer }}</p>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-whatsapp-button></app-whatsapp-button>
+  <app-partner-slider></app-partner-slider>
+  <app-quote-feedback [state]="feedbackState()" [message]="feedbackMessage()"
+    (close)="closeFeedback()"></app-quote-feedback>
+
+  <!-- Custom Toast Notification -->
+  @if (toastMessage()) {
+  <div class="toast-container">
+    <div class="toast" [class.toast-error]="toastType() === 'error'" [class.toast-success]="toastType() === 'success'">
+      <div class="toast-icon">
+        <span class="material-icons">{{ toastType() === 'error' ? 'error_outline' : 'check_circle_outline' }}</span>
+      </div>
+      <span class="toast-text">{{ toastMessage() }}</span>
+    </div>
+  </div>
+  }
+
+  <app-footer
+    description="Get custom quotes for modular kitchens, wardrobes, and complete interior fit-outs. Factory-direct pricing with 24-hour response time."></app-footer>
+</div>

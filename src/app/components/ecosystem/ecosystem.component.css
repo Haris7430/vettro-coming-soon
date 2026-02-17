@@ -1,0 +1,713 @@
+/* ========================================
+   ECOSYSTEM COMPONENT - CINEMATIC REDESIGN
+   High-End Architectural Portfolio Style
+   ======================================== */
+
+/* ==================== GLOBAL STYLES ==================== */
+.ecosystem-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* ==================== SECTION 1: CINEMATIC HERO ==================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/content/images/ecosystem/hero_background_1770039243605.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Parallax effect */
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  padding: 0 2rem;
+  max-width: 1200px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+}
+
+/* Fade-in animations */
+.fade-in-up {
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-up-delayed {
+  animation: fadeInUp 1.2s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== SECTION 2: THE NARRATIVE (SPLIT SCREEN) ==================== */
+.narrative-section {
+  background: #fff;
+  padding: 8rem 2rem;
+}
+
+.narrative-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.narrative-text {
+  padding-right: 2rem;
+}
+
+.narrative-heading {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #D4AF37;
+  /* Bronze */
+  margin-bottom: 2rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.2;
+}
+
+.narrative-body {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.narrative-visuals {
+  position: relative;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-image {
+  position: absolute;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.floating-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(212, 175, 55, 0.95);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.floating-1 {
+  width: 300px;
+  height: 200px;
+  top: 0;
+  left: 0;
+  animation: float1 6s ease-in-out infinite;
+  z-index: 3;
+}
+
+.floating-2 {
+  width: 280px;
+  height: 220px;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  animation: float2 7s ease-in-out infinite;
+  z-index: 2;
+}
+
+.floating-3 {
+  width: 320px;
+  height: 240px;
+  bottom: 0;
+  left: 15%;
+  animation: float3 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes float1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes float2 {
+
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-50%) translateX(15px) rotate(-2deg);
+  }
+}
+
+@keyframes float3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-25px) rotate(1deg);
+  }
+}
+
+.floating-image:hover {
+  transform: scale(1.05);
+}
+
+/* ==================== DIVIDERS ==================== */
+.divider-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.divider-line {
+  border-top: 1px solid #D4AF37;
+  opacity: 0.5;
+}
+
+/* ==================== SECTION 3: INTERACTIVE BRAND CARDS ==================== */
+.brands-section {
+  background: #fff;
+  padding: 6rem 2rem;
+}
+
+.brands-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brands-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.brands-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.brands-subtitle {
+  font-size: 1.125rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.brand-card {
+  position: relative;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  transition: background 0.4s ease;
+  z-index: 2;
+}
+
+.card-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+}
+
+.card-header-with-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.card-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateY(20px);
+}
+
+.card-description p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.coming-soon-badge {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  white-space: nowrap;
+}
+
+/* Hover Effects */
+.brand-card:hover {
+  border-color: #D4AF37;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+}
+
+.brand-card:hover .card-background {
+  transform: scale(1.1);
+}
+
+.brand-card:hover .card-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.2));
+}
+
+.brand-card:hover .card-description {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== SECTION 4: ANIMATED TIMELINE ==================== */
+.timeline-section {
+  background: #fff;
+  padding: 6rem 2rem;
+}
+
+.timeline-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-header {
+  margin-bottom: 4rem;
+}
+
+.timeline-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.timeline-subtitle {
+  font-size: 1.125rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.timeline-content {
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #ddd 0%, #ddd 100%);
+  transform: translateX(-50%);
+  transition: background 1s ease;
+  z-index: 1;
+}
+
+.timeline-line-active {
+  background: linear-gradient(to bottom, #D4AF37 0%, #D4AF37 60%, #ddd 100%);
+}
+
+.timeline-events {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.timeline-event {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  opacity: 0.6;
+  transition: opacity 0.6s ease;
+}
+
+.timeline-event-active {
+  opacity: 1;
+}
+
+.timeline-year-side {
+  text-align: right;
+  padding-right: 2rem;
+  position: relative;
+}
+
+.timeline-node {
+  position: absolute;
+  right: -1.25rem;
+  top: 0.5rem;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.6s ease;
+  z-index: 3;
+}
+
+.timeline-event-active .timeline-node {
+  border-color: #D4AF37;
+  background: #D4AF37;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+  }
+}
+
+.timeline-year {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.timeline-details-side {
+  padding-left: 2rem;
+  border-left: 2px solid transparent;
+  padding-top: 0.5rem;
+}
+
+.timeline-event-active .timeline-details-side {
+  border-left-color: #D4AF37;
+}
+
+.timeline-brand {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+}
+
+/* ==================== FOOTER STATEMENT ==================== */
+.footer-statement {
+  background: #fff;
+  padding: 4rem 2rem 6rem;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-box {
+  border: 1px solid #D4AF37;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  background: white;
+}
+
+.footer-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  font-weight: 300;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+  .narrative-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .narrative-text {
+    padding-right: 0;
+  }
+
+  .narrative-visuals {
+    height: 400px;
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .timeline-event {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline-year-side {
+    text-align: left;
+    padding-right: 0;
+    padding-left: 2rem;
+  }
+
+  .timeline-node {
+    left: -1.25rem;
+    right: auto;
+  }
+
+  .timeline-line {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  .timeline-details-side {
+    padding-left: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 70vh;
+  }
+
+  .hero-background {
+    background-attachment: scroll;
+    /* Disable parallax on mobile */
+  }
+
+  .narrative-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .narrative-visuals {
+    height: 300px;
+  }
+
+  .floating-1,
+  .floating-2,
+  .floating-3 {
+    width: 200px;
+    height: 150px;
+  }
+
+  .floating-2 {
+    width: 180px;
+    height: 140px;
+  }
+
+  .brands-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .brands-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .brand-card {
+    height: 350px;
+  }
+
+  .timeline-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .timeline-header {
+    margin-bottom: 3rem;
+  }
+
+  .footer-box {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .narrative-heading {
+    font-size: 1.75rem;
+  }
+
+  .narrative-body {
+    font-size: 1rem;
+  }
+
+  .brands-title,
+  .timeline-title {
+    font-size: 1.75rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+}

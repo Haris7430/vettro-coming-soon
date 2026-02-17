@@ -1,0 +1,26 @@
+[33m❯[39m Building...
+[32m✔[39m Building...
+Application bundle generation failed. [5.321 seconds] - 2026-02-08T16:56:07.158Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: NextStepComponent is not used within the template of ContactComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/contact/contact.ts:20:105:
+[37m      20 │ ..., FooterComponent, ExperienceCentersComponent, [32mNextStepComponent[37m],
+         ╵                                                   [32m~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8001: 'app-whatsapp-button' is not a known element:
+1. If 'app-whatsapp-button' is an Angular component, then verify that it is included in the '@Component.imports' of this component.
+2. If 'app-whatsapp-button' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@Component.schemas' of this component to suppress this message.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/contact/contact.html:235:2:
+[37m      235 │   [32m<app-whatsapp-button>[37m</app-whatsapp-button>
+          ╵   [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ContactComponent.
+
+    src/app/components/contact/contact.ts:21:15:
+[37m      21 │   templateUrl: [32m'./contact.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

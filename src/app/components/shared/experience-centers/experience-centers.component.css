@@ -1,0 +1,32 @@
+/* Glass card styling */
+.glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Ensure smooth transitions */
+.glass-card:hover {
+    transform: scale(1.05);
+}
+
+/* Animated Gradient Background */
+.experience-centers-bg {
+    background: linear-gradient(-45deg, #ffffff, #e1bee7, #9575cd, #81c784, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

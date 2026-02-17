@@ -1,5 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fix for font-feature-settings warning */
+* {
+    font-feature-settings: 'cv11', 'ss01';
+}
 
 @import "tailwindcss";
 
+@layer utilities {
+    .bg-interior-icons {
+        background-color: #ffffff;
+        background-image:
+            radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 100%),
+            url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%239C92AC' stroke-opacity='0.2' stroke-width='1.5'%3E%3C!-- Cutting Machine --%3E%3Cpath d='M10 10h20v15h-20z M15 15l10 5 M20 10v5' /%3E%3C!-- Clothes/Hanger --%3E%3Cpath d='M50 15l-10 10h20l-10-10z M50 25v10' /%3E%3C!-- Kitchen/Cabinet --%3E%3Cpath d='M80 10h20v25h-20z M80 20h20 M90 10v25' /%3E%3C!-- Living Room/Sofa --%3E%3Cpath d='M10 50h30v-10h-5v-5h-20v5h-5z M10 60h30 M15 50v10 M35 50v10' /%3E%3C!-- Hall/TV Unit --%3E%3Cpath d='M60 50h30v15h-30z M65 55h20 M75 65v5' /%3E%3C!-- Glass/Window --%3E%3Cpath d='M20 90h20v20h-20z M30 90v20 M20 100h20' /%3E%3C/g%3E%3C/svg%3E");
+        animation: floatBackground 60s linear infinite;
+    }
 
+    @keyframes floatBackground {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 100px 100px;
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .text-shadow-lg {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .animate-marquee {
+        animation: marquee 120s linear infinite;
+    }
+
+    .animate-marquee-fast {
+        animation: marquee 80s linear infinite;
+    }
+
+    .animate-marquee-reverse {
+        animation: marquee-reverse 25s linear infinite;
+    }
+
+    /* Independent Gallery Speeds */
+    .animate-gallery {
+        animation: marquee 45s linear infinite;
+    }
+
+    .animate-gallery-reverse {
+        animation: marquee-reverse 45s linear infinite;
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes marquee-reverse {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    /* Diagonal Gradient Animations */
+    @keyframes diagonal-1 {
+        0% {
+            background-position: 0% 100%;
+        }
+
+        100% {
+            background-position: 100% 0%;
+        }
+    }
+
+    @keyframes diagonal-2 {
+        0% {
+            background-position: 100% 100%;
+        }
+
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+
+    .moving-grad-1 {
+        background: linear-gradient(45deg, #f8f9fa, #e9ecef, #dee2e6, #ced4da);
+        background-size: 400% 400%;
+        animation: diagonal-1 15s linear infinite alternate;
+    }
+
+    .moving-grad-2 {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5), rgba(255, 255, 255, 0.8));
+        background-size: 400% 400%;
+        animation: diagonal-2 20s linear infinite alternate;
+    }
+
+    .partner-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 6rem;
+        /* h-24 equivalent */
+        width: 12rem;
+        /* w-48 equivalent */
+        margin: 0 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .partner-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 15px rgba(212, 175, 55, 0.3);
+        border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    /* Universal Contrast for Mixed Logos */
+    .partner-card img {
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+        transition: filter 0.3s ease;
+    }
+
+    .partner-card:hover img {
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+    }
+}

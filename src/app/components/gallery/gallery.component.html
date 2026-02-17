@@ -1,0 +1,378 @@
+<div class="gallery-page">
+    <!-- Hero Section -->
+    <section class="hero-section relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <!-- Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-100 via-orange-50 to-peach-100"></div>
+
+        <!-- Animated Gradient Orbs -->
+        <div
+            class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-orange-300/30 to-pink-300/30 rounded-full blur-3xl animate-float">
+        </div>
+        <div
+            class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-peach-300/30 to-orange-200/30 rounded-full blur-3xl animate-float-delayed">
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <span class="block text-[#D4AF37] tracking-[0.3em] font-medium uppercase text-sm mb-4 animate-fade-in">
+                Complete Interior Ecosystem
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-900">
+                Product <span class="text-gradient-gold-animated italic font-serif">Gallery</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Explore our comprehensive range of 30+ premium products across 5 specialized departments
+            </p>
+
+            <!-- Branch Filter -->
+            <div class="glassmorphism-inline-card inline-block px-6 py-4 rounded-2xl">
+                <label class="text-sm font-medium text-gray-700 mr-3">Available at:</label>
+                <select [(ngModel)]="selectedLocation"
+                    class="bg-white/80 border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] cursor-pointer">
+                    <option value="All">All Brands</option>
+                    @for (branch of branches(); track branch._id) {
+                    <option [value]="getLogicalBranchId(branch.name)">{{ branch.name }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hub Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 relative flex items-center">
+
+            <!-- Left Chevron -->
+            <button (click)="scrollNav('left')" class="nav-chevron-btn mr-2 hidden md:flex">
+                <span class="material-icons">chevron_left</span>
+            </button>
+
+            <div #navContainer
+                class="flex space-x-2 md:space-x-6 py-4 overflow-x-auto scrollbar-hide flex-1 scroll-smooth">
+                @for (hub of productHubs(); track hub.id) {
+                <button (click)="scrollToHub(hub.id)" [class.active]="activeHub() === hub.id"
+                    class="hub-nav-btn flex items-center space-x-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap shrink-0">
+                    <span class="material-icons text-xl">{{ hub.icon }}</span>
+                    <span class="hidden md:inline text-sm font-medium">{{ hub.name }}</span>
+                </button>
+                }
+                <!-- Services Button -->
+                <button (click)="scrollToHub('our-services')" [class.active]="activeHub() === 'our-services'"
+                    class="hub-nav-btn flex items-center space-x-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap shrink-0">
+                    <span class="material-icons text-xl">build_circle</span>
+                    <span class="hidden md:inline text-sm font-medium">Services</span>
+                </button>
+                <!-- Manufacturing Button -->
+                <button (click)="scrollToHub('manufacturing')" [class.active]="activeHub() === 'manufacturing'"
+                    class="hub-nav-btn flex items-center space-x-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap shrink-0">
+                    <span class="material-icons text-xl">precision_manufacturing</span>
+                    <span class="hidden md:inline text-sm font-medium">Manufacturing</span>
+                </button>
+            </div>
+
+            <!-- Right Chevron -->
+            <button (click)="scrollNav('right')" class="nav-chevron-btn ml-2 hidden md:flex">
+                <span class="material-icons">chevron_right</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Product Hubs -->
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-24">
+
+        @for (hub of filteredHubs(); track hub.id) {
+        <section [id]="hub.id" class="hub-section scroll-mt-24">
+
+            <!-- Hub Header -->
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 bg-gradient-to-br from-orange-100 to-pink-100 rounded-full mb-4">
+                    <span class="material-icons text-5xl text-[#D4AF37]">{{ hub.icon }}</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    {{ hub.name }}
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    {{ hub.description }}
+                </p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                @for (product of hub.products; track product.id) {
+                <div
+                    class="product-card glassmorphism-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 group">
+                    <!-- Product Image -->
+                    @if (product.image) {
+                    <div
+                        class="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl mb-4 overflow-hidden relative group-hover:from-orange-50 group-hover:to-pink-50 transition-all">
+                        <img [ngSrc]="product.image" [alt]="product.name" fill
+                            class="object-cover transition-transform duration-300 group-hover:scale-110"
+                            (error)="$any($event.target).style.display='none'; $any($event.target).nextElementSibling.style.display='flex'" />
+                        <!-- Fallback icon (shown on error) -->
+                        <div class="hidden w-full h-full items-center justify-center absolute inset-0">
+                            <span
+                                class="material-icons text-6xl text-gray-300 group-hover:text-[#D4AF37] transition-colors">category</span>
+                        </div>
+
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-orange-300/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    } @else {
+                    <!-- Fallback for products without images -->
+                    <div
+                        class="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group-hover:from-orange-50 group-hover:to-pink-50 transition-all">
+                        <span
+                            class="material-icons text-6xl text-gray-300 group-hover:text-[#D4AF37] transition-colors">category</span>
+
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-orange-300/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    }
+
+                    <!-- Product Info -->
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ product.name }}</h3>
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">{{ product.description }}</p>
+
+                    <!-- Category Badge -->
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs px-3 py-1 bg-orange-100 text-orange-700 rounded-full font-medium">
+                            {{ product.category }}
+                        </span>
+                        @if (product.brands && product.brands.length > 0) {
+                        <span class="text-xs text-[#D4AF37] font-bold">{{ product.brands[0] }}</span>
+                        }
+                    </div>
+
+                    <!-- Branch Availability -->
+                    <div class="flex flex-wrap gap-1">
+                        @for (branchId of product.availableAt.slice(0, 3); track branchId) {
+                        <span [class]="'text-xs px-2 py-1 rounded ' + getBranchBadgeColor(branchId)">
+                            {{ formatBranchName(branchId).substring(0, 10) }}
+                        </span>
+                        }
+                        @if (product.availableAt.length > 3) {
+                        <span
+                            class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded cursor-help relative group/tooltip"
+                            [title]="getBranchesTooltip(product.availableAt.slice(3))">
+                            +{{ product.availableAt.length - 3 }}
+                            <!-- Tooltip -->
+                            <span
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+                                {{ getBranchesTooltip(product.availableAt.slice(3)) }}
+                            </span>
+                        </span>
+                        }
+                    </div>
+
+                    <!-- Specifications -->
+                    @if (product.specifications) {
+                    <div class="mt-3 pt-3 border-t border-gray-200">
+                        <p class="text-xs text-gray-500">
+                            @for (spec of product.specifications | keyvalue; track spec.key; let first = $first) {
+                            {{ first ? '' : ' • ' }}{{ spec.value }}
+                            }
+                        </p>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+
+            <!-- Related Services Callout -->
+            @if (hub.relatedServices && hub.relatedServices.length > 0) {
+            <div class="service-callout glassmorphism-card-accent p-8 rounded-3xl">
+                <div class="flex items-center mb-6">
+                    <span class="material-icons text-4xl text-[#D4AF37] mr-3">build_circle</span>
+                    <h3 class="text-2xl font-bold text-gray-900">Related Services</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    @for (service of hub.relatedServices; track service.id) {
+                    <div
+                        class="service-item flex items-start space-x-3 p-4 bg-white/60 rounded-xl hover:bg-white/80 transition-all group cursor-pointer">
+                        <span class="material-icons text-orange-500 group-hover:text-[#D4AF37] transition-colors">{{
+                            service.icon }}</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">{{ service.name }}</h4>
+                            <p class="text-xs text-gray-600">{{ service.description }}</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+
+        </section>
+        }
+
+        <!-- Our Services Section -->
+        <section id="our-services" class="services-section scroll-mt-24">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 bg-gradient-to-br from-orange-100 to-pink-100 rounded-full mb-4">
+                    <span class="material-icons text-5xl text-[#D4AF37]">build_circle</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Our <span class="text-gradient-gold-animated italic">Services</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Professional fabrication and finishing services to bring your vision to life
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @for (service of services(); track service.id) {
+                <div
+                    class="service-card glassmorphism-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 group">
+                    <!-- Service Image -->
+                    @if (service.image) {
+                    <div
+                        class="w-full h-48 bg-gradient-to-br from-orange-100 to-pink-100 rounded-xl mb-4 overflow-hidden relative group-hover:from-[#D4AF37]/20 group-hover:to-orange-200/30 transition-all">
+                        <img [ngSrc]="service.image" [alt]="service.name" fill
+                            class="object-cover transition-transform duration-300 group-hover:scale-110"
+                            (error)="$any($event.target).style.display='none'; $any($event.target).nextElementSibling.style.display='flex'" />
+                        <!-- Fallback icon (shown on error) -->
+                        <div class="hidden w-full h-full items-center justify-center absolute inset-0">
+                            <span
+                                class="material-icons text-6xl text-[#D4AF37] group-hover:text-orange-500 transition-colors">{{
+                                service.icon }}</span>
+                        </div>
+
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-orange-300/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    } @else {
+                    <!-- Fallback for services without images -->
+                    <div
+                        class="w-full h-48 bg-gradient-to-br from-orange-100 to-pink-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group-hover:from-[#D4AF37]/20 group-hover:to-orange-200/30 transition-all">
+                        <span
+                            class="material-icons text-6xl text-[#D4AF37] group-hover:text-orange-500 transition-colors">{{
+                            service.icon }}</span>
+
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-orange-300/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    }
+
+                    <!-- Service Info -->
+                    <div class="flex items-start space-x-3 mb-3">
+                        <span
+                            class="material-icons text-2xl text-orange-500 group-hover:text-[#D4AF37] transition-colors flex-shrink-0 mt-0.5">{{
+                            service.icon }}</span>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ service.name }}</h3>
+                            <p class="text-sm text-gray-600">{{ service.description }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Category Badge -->
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <span class="text-xs px-3 py-1 bg-orange-100 text-orange-700 rounded-full font-medium">
+                            @if (service.category === 'core-yard') { Core Yard Services }
+                            @else if (service.category === 'surface-studio') { Surface Studio Services }
+                            @else if (service.category === 'real-glass') { Glass Services }
+                            @else { Professional Services }
+                        </span>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- Manufacturing Spotlight -->
+        <section id="manufacturing" class="manufacturing-section scroll-mt-24">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 bg-gradient-to-br from-orange-100 to-pink-100 rounded-full mb-4">
+                    <span class="material-icons text-5xl text-[#D4AF37]">precision_manufacturing</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Manufacturing <span class="text-gradient-gold-animated italic">Spotlight</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Custom-designed and manufactured interior solutions
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @for (item of manufacturing(); track item.id) {
+                <div
+                    class="manufacturing-card glassmorphism-card p-6 rounded-2xl text-center transform hover:scale-105 transition-all duration-300 group relative overflow-hidden">
+                    @if (item.image) {
+                    <!-- Card with Image -->
+                    <div class="absolute inset-0 z-0">
+                        <img [ngSrc]="item.image" [alt]="item.name" fill
+                            class="object-cover transition-transform duration-300 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 h-40 mb-4"></div>
+                    <h3 class="text-xl font-bold text-white drop-shadow-md relative z-10 mb-2">{{ item.name }}</h3>
+                    <p class="text-sm text-gray-100 drop-shadow relative z-10">{{ item.description }}</p>
+                    } @else {
+                    <!-- Card without Image - Show Icon -->
+                    <div
+                        class="h-40 mb-4 flex items-center justify-center bg-gradient-to-br from-orange-100 to-pink-100 rounded-xl">
+                        <span class="material-icons text-6xl text-[#D4AF37]">
+                            @if (item.id === 'modular-kitchen') { kitchen }
+                            @else if (item.id === 'wardrobe') { checkroom }
+                            @else if (item.id === 'tv-unit') { tv }
+                            @else { spa }
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ item.name }}</h3>
+                    <p class="text-sm text-gray-600">{{ item.description }}</p>
+                    }
+                </div>
+                }
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer CTA -->
+    <section class="cta-section relative py-20 overflow-hidden">
+        <!-- Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-orange-100 to-pink-100"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Ready to Start Your Project?
+            </h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Visit any of our 5 specialized branches or contact us for expert guidance
+            </p>
+            <a routerLink="/contact"
+                class="inline-block premium-cta-button px-10 py-4 bg-[#D4AF37] text-white hover:bg-[#B8941F] transition-all uppercase tracking-widest text-sm font-bold rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105">
+                Contact Us Today
+            </a>
+        </div>
+    </section>
+
+</div>
+
+
+
+<!-- Experience Centers -->
+<app-experience-centers [branches]="branches()"></app-experience-centers>
+
+<!-- Section: Partner Slider -->
+<app-partner-slider></app-partner-slider>
+
+<!-- Footer Component -->
+<app-footer [description]="footerDescription"></app-footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919447772931?text=Hello,%20I'm%20interested%20in%20your%20products" target="_blank"
+    class="whatsapp-float fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group">
+    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+        <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+    <!-- Pulse Animation -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-75 group-hover:opacity-0"></span>
+</a>

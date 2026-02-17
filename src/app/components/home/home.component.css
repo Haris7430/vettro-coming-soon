@@ -1,0 +1,512 @@
+/* Mesh Gradient Flow Animation */
+@keyframes flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes premiumShimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.mesh-gradient-bg {
+    background: linear-gradient(-45deg, #9A7B4F, #F5F5F3, #ffffff, #2c1810);
+    background-size: 400% 400%;
+    animation: flow 15s ease infinite;
+}
+
+/* Premium Glossy Card Effect - Black & Grape Flow */
+@keyframes darkFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.glossy-card-premium {
+    /* Maximum Dark Deep Purple - Dark Burgundy - Black Grape Gradient */
+    background: linear-gradient(135deg, #15001a 0%, #300018 50%, #0a000c 100%) !important;
+    background-size: 200% 200% !important;
+    animation: premiumShimmer 6s ease infinite !important;
+
+    /* Glassmorphism Borders/Feel */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glossy-card-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    /* Shine Effect */
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(212, 175, 55, 0.2),
+            /* Hint of Gold Shine */
+            transparent);
+    transition: 0.5s;
+}
+
+.glossy-card-premium:hover::before {
+    left: 100%;
+}
+
+.glossy-card-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px 0 rgba(46, 3, 39, 0.4);
+    /* Grape Glow */
+    border-color: #D4AF37;
+}
+
+/* Fix for Logo visibility on dark background - Invert if logos are black */
+.glossy-card-premium img {
+    filter: brightness(0) invert(1);
+    /* Make logos white initially */
+    transition: all 0.5s ease;
+    opacity: 0.9;
+}
+
+.glossy-card-premium:hover img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+    /* Gold glow on hover */
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Text Gradients */
+.text-gradient-gold {
+    background: linear-gradient(to right, #D4AF37, #FFD700, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Custom Glass Play Button */
+.glass-play-button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.glass-play-button::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 4px solid rgba(212, 175, 55, 0.5);
+    /* Bronze/Gold Ring */
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+.glass-play-button:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.1);
+}
+
+/* Architectural Frame */
+.architectural-frame {
+    position: relative;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.architectural-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transform: translate(10px, 10px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Partners Styles (Re-Added) */
+.partner-gradient-dark {
+    /* Deep Royal/Black Gradient */
+    background: linear-gradient(90deg, #0f0f0f, #1e1e2e, #0f0f0f);
+    background-size: 200% 100%;
+    animation: flowBg 15s ease infinite;
+}
+
+.partner-logo-universal {
+    /* Force White by default */
+    filter: brightness(0) invert(1) opacity(0.6);
+    transition: all 0.4s ease;
+}
+
+.partner-logo-universal:hover {
+    /* Original Color on Hover */
+    filter: none;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@keyframes flowBg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Q-TUFF Floating Banner - Fixed Bottom Right */
+.q-tuff-banner {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    background: linear-gradient(90deg, #000, #111, #000);
+    border-left: 4px solid #D4AF37;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideInBanner 1s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    .q-tuff-banner {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-left: none;
+        border-top: 4px solid #D4AF37;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@keyframes slideInBanner {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.shimmer-text {
+    background: linear-gradient(to right, #666, #fff, #666);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Magnetic Arrow Button Tweaks */
+.magnetic-arrow-btn {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.magnetic-arrow-btn:hover {
+    box-shadow: 0 20px 25px -5px rgba(212, 175, 55, 0.4), 0 10px 10px -5px rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Performance Utilities */
+.will-change-transform {
+    will-change: transform;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Gallery Container Styles */
+.gallery-container {
+    cursor: grab;
+    /* Prevent text selection during drag */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.gallery-container:active {
+    cursor: grabbing;
+}
+
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+/* ===== ABOUT US SECTION - FIXED BACKGROUND & GLASSMORPHISM ===== */
+
+/* Fixed Parallax Background */
+/* Fixed Parallax Background - Premium Black Abstract */
+.about-section-fixed-bg {
+    position: relative;
+    background-color: #000;
+}
+
+.fixed-bg-image {
+    /* Reduced Opacity (70% -> 60%) to make image more visible */
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url('/content/images/Vettro%20Building%20Image.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) brightness(0.8);
+    /* Brighter image */
+}
+
+/* Premium Glassmorphism Card */
+.glassmorphism-card {
+    /* Water Flow Gradient */
+    background: linear-gradient(45deg, #0f2027, #203a43, #040404, #1c1c1c);
+    background-size: 300% 300%;
+    animation: waterFlow 8s ease infinite;
+
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        0 0 80px rgba(212, 175, 55, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphism-card:hover {
+    background: linear-gradient(45deg, #142830, #25444d, #325d70, #252525);
+    background-size: 300% 300%;
+    animation: waterFlow 8s ease infinite;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15),
+        0 0 100px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Animated Gold Gradient Text */
+.text-gradient-gold-animated {
+    background: linear-gradient(90deg,
+            #D4AF37,
+            #FFD700,
+            #FFA500,
+            #FFD700,
+            #D4AF37);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Timeline Item Animation */
+.timeline-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade In Animation */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pulse Slow Animation for Border */
+.animate-pulse-slow {
+    animation: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseSlow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Premium CTA Button */
+.premium-cta-button {
+    position: relative;
+    z-index: 1;
+    box-shadow:
+        0 4px 15px rgba(212, 175, 55, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-cta-button:hover {
+    box-shadow:
+        0 8px 30px rgba(212, 175, 55, 0.4),
+        inset 0 1px 1px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.premium-cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, #D4AF37, #FFD700, #D4AF37);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.premium-cta-button:hover::before {
+    opacity: 1;
+}
+
+/* Mobile Responsiveness for Fixed Background */
+@media (max-width: 768px) {
+    .about-section-fixed-bg {
+        background-attachment: scroll;
+    }
+
+    .fixed-bg-image {
+        background-attachment: scroll;
+        filter: brightness(0.5) blur(3px);
+    }
+
+    .glassmorphism-card {
+        background: linear-gradient(45deg, #0f2027, #2b006b, #4f0765, #1c1c1c);
+        background-size: 300% 300%;
+        animation: waterFlow 8s ease infinite;
+    }
+}
+
+/* Ensure smooth scrolling on iOS */
+@supports (-webkit-touch-callout: none) {
+    .about-section-fixed-bg {
+        background-attachment: scroll;
+    }
+
+    .fixed-bg-image {
+        background-attachment: scroll;
+    }
+}
